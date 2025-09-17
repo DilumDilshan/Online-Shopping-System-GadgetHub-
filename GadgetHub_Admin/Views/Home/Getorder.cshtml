@@ -1,0 +1,72 @@
+﻿@model IEnumerable<GadgetHub_Server.Models.Orders>
+
+@{
+    ViewBag.Title = "Getorder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center mb-3 text-info"><i class="fas fa-shopping-cart"></i> Manage Orders</h2>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="text-secondary">Orders List</h5>
+</div>
+
+<table class="table table-striped table-bordered">
+    <thead class="bg-info text-white">
+        <tr>
+            <th>CustomerName</th>
+            <th>ProductName</th>
+            <th>Quantity</th>
+            <th>Status</th>
+            <th class="text-center">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.CustomerName)</td>
+                <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                <td class="text-center">
+                    <div class="btn-group">
+                        @using (Html.BeginForm("ConfirmOrder", "Home", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("id", item.OrderID)
+                            <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('Confirm this Order?');">
+                                <i class="fas fa-check-circle"></i> Confirm
+                            </button>
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+        <i class="fas fa-check-circle"></i> @TempData["SuccessMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+        <i class="fas fa-exclamation-circle"></i> @TempData["ErrorMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+<!-- Bootstrap JS for table interactivity -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+

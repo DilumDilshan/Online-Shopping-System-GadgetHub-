@@ -1,0 +1,38 @@
+﻿@model IEnumerable<GadgetHub_Server.Models.Customers>
+
+@{
+    ViewBag.Title = "GetCustomer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center text-primary mb-4"><i class="fas fa-users"></i> Customers</h2>
+
+<table class="table table-bordered table-striped table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.CustomerID)</th>
+            <th>@Html.DisplayNameFor(model => model.CustomerName)</th>
+            <th>@Html.DisplayNameFor(model => model.CustomerEmail)</th>
+            <th>@Html.DisplayNameFor(model => model.Password)</th>
+            <th>@Html.DisplayNameFor(model => model.Address)</th>
+            <th>@Html.DisplayNameFor(model => model.CustomerPhone)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.CustomerID)</td>
+                <td>@Html.DisplayFor(modelItem => item.CustomerName)</td>
+                <td>@Html.DisplayFor(modelItem => item.CustomerEmail)</td>
+                <td>@Html.DisplayFor(modelItem => item.Password)</td>
+                <td>@Html.DisplayFor(modelItem => item.Address)</td>
+                <td>@Html.DisplayFor(modelItem => item.CustomerPhone)</td>  
+                <td>
+                    @Html.ActionLink("Delete", "DeleteCustomer", new { id = item.CustomerID }, new { @class = "btn btn-sm btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

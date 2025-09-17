@@ -1,0 +1,41 @@
+﻿@model IEnumerable<GadgetHub_Server.Models.Admins>
+
+@{
+    ViewBag.Title = "GetAdmin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="text-primary mb-4">Admin Management</h2>
+
+    <div class="mb-3">
+        @Html.ActionLink("➕ Add New Admin", "AddAdmin", null, new { @class = "btn btn-success" })
+    </div>
+
+    <table class="table table-bordered table-striped table-hover shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.AdminID)</th>
+                <th>@Html.DisplayNameFor(model => model.AdminName)</th>
+                <th>@Html.DisplayNameFor(model => model.AdminEmail)</th>
+                <th>@Html.DisplayNameFor(model => model.Password)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.AdminID)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AdminName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AdminEmail)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Password)</td>
+                    <td>
+                        @Html.ActionLink("Update", "UpdateAdmin", new { id = item.AdminID }, new { @class = "btn btn-sm btn-warning me-1" })
+                        @Html.ActionLink("Delete", "DeleteAdmin", new { id = item.AdminID }, new { @class = "btn btn-sm btn-danger" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

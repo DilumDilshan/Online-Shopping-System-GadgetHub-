@@ -1,0 +1,46 @@
+﻿@model IEnumerable<GadgetHub_Server.Models.OrderRequests>
+
+@{
+    ViewBag.Title = "GetOrderRequest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center text-primary my-4">
+    <i class="fas fa-shopping-basket"></i> Order Requests
+</h2>
+
+<div class="mb-3 text-end">
+    @Html.ActionLink("Create New", "AddOrderRequest", null, new { @class = "btn btn-primary" })
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped align-middle shadow-sm">
+        <thead class="table-dark text-center">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.OrderRequestID)</th>
+                <th>@Html.DisplayNameFor(model => model.OrderID)</th>
+                <th>@Html.DisplayNameFor(model => model.DistributorName)</th>
+                <th>@Html.DisplayNameFor(model => model.OrderPrice)</th>
+                <th>@Html.DisplayNameFor(model => model.OrderDate)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.OrderRequestID)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.OrderID)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DistributorName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.OrderPrice)</td>
+                    <td>@Html.DisplayFor(modelItem => item.OrderDate)</td>
+                    <td class="text-center">
+                        <div class="btn-group btn-group-sm" role="group">
+                            @Html.ActionLink("Delete", "DeleteOrderRequest", new { id = item.OrderRequestID }, new { @class = "btn btn-outline-danger" })
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

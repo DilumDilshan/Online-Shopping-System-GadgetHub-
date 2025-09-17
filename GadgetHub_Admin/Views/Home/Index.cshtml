@@ -1,0 +1,164 @@
+﻿@model GadgetHub_Server.Models.Admins
+
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Welcome Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+    background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    animation: glow 8s ease-in-out infinite;
+}
+
+.login-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 10px rgba(255, 107, 107, 0.5);
+    width: 100%;
+    max-width: 380px;
+    text-align: left;
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(5px);
+}
+
+.login-container h2 {
+    margin-bottom: 25px;
+    color: #2d3436;
+    font-weight: 700;
+    font-size: 26px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-control {
+    background: rgba(255, 255, 255, 0.8);
+    border: 2px solid #ff6b6b;
+    border-radius: 10px;
+    padding: 12px;
+    color: #2d3436;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #4ecdc4;
+    box-shadow: 0 0 8px rgba(78, 205, 196, 0.5);
+    background: #ffffff;
+}
+
+.form-label {
+    color: #2d3436;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background: linear-gradient(90deg, #ff6b6b, #ff8e53);
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    width: 100%;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(90deg, #ff8e53, #ff6b6b);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.6);
+}
+
+.alert {
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #4ecdc4;
+    color: #2d3436;
+}
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Admin Login</h2>
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+                <i class="fas fa-check-circle"></i> @TempData["SuccessMessage"]
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
+
+        <!-- Error Message -->
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+                <i class="fas fa-exclamation-circle"></i> @TempData["ErrorMessage"]
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
+
+        <form method="post" action="@Url.Action("Index", "Home")">
+            <div class="mb-3">
+                <label for="AdminEmail" class="form-label">Email</label>
+                <input type="text" class="form-control" id="AdminEmail" name="AdminEmail" required />
+            </div>
+
+            <div class="mb-3">
+                <label for="Password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="Password" name="Password" required />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+</body>
+</html>
+
+

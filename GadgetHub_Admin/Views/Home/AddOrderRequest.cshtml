@@ -1,0 +1,58 @@
+﻿@model GadgetHub_Server.Models.OrderRequests
+
+@{
+    ViewBag.Title = "AddOrderRequest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center text-primary my-4">
+    <i class="fas fa-plus-circle"></i> Add Order Request
+</h2>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "needs-validation", novalidate = "novalidate" }))
+{
+    @Html.AntiForgeryToken()
+
+  <div class="container">
+      <div class="row g-3 mb-3" style="color:black;">
+          <div class="col-md-6">
+              @Html.LabelFor(model => model.OrderRequestID, htmlAttributes: new { @class = "form-label fw-bold" })
+              @Html.EditorFor(model => model.OrderRequestID, new { htmlAttributes = new { @class = "form-control" } })
+              @Html.ValidationMessageFor(model => model.OrderRequestID, "", new { @class = "text-danger" })
+          </div>
+
+          <div class="col-md-6">
+              @Html.LabelFor(model => model.OrderID, htmlAttributes: new { @class = "form-label fw-bold" })
+              @Html.EditorFor(model => model.OrderID, new { htmlAttributes = new { @class = "form-control" } })
+              @Html.ValidationMessageFor(model => model.OrderID, "", new { @class = "text-danger" })
+          </div>
+
+          <div class="col-md-6">
+              @Html.LabelFor(model => model.DistributorName, htmlAttributes: new { @class = "form-label fw-bold" })
+              @Html.EditorFor(model => model.DistributorName, new { htmlAttributes = new { @class = "form-control" } })
+              @Html.ValidationMessageFor(model => model.DistributorName, "", new { @class = "text-danger" })
+          </div>
+
+          <div class="col-md-6">
+              @Html.LabelFor(model => model.OrderPrice, htmlAttributes: new { @class = "form-label fw-bold" })
+              @Html.EditorFor(model => model.OrderPrice, new { htmlAttributes = new { @class = "form-control" } })
+              @Html.ValidationMessageFor(model => model.OrderPrice, "", new { @class = "text-danger" })
+          </div>
+
+          <div class="col-md-6">
+              @Html.LabelFor(model => model.OrderDate, htmlAttributes: new { @class = "form-label fw-bold" })
+              @Html.TextBoxFor(model => model.OrderDate, new { @class = "form-control", type = "date" })
+              @Html.ValidationMessageFor(model => model.OrderDate, "", new { @class = "text-danger" })
+          </div>
+
+      </div>
+
+    <div class="text-end mt-4">
+        <input type="submit" value="Create" class="btn btn-success px-4" />
+    </div>
+   </div>
+}
+
+<div class="mt-3 text-center">
+    @Html.ActionLink("← Back to List", "GetOrderRequest", null, new { @class = "btn btn-outline-secondary" })
+</div>

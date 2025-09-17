@@ -1,0 +1,61 @@
+﻿@model GadgetHub_Server.Models.Distributors
+
+@{
+    ViewBag.Title = "AddDistributor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="text-primary mb-4">Add New Distributor</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="card p-4 shadow-sm">
+            <h4 class="mb-3">Distributor Details</h4>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.DistributorID, htmlAttributes: new { @class = "form-label" })
+                @Html.EditorFor(model => model.DistributorID, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Distributor ID" } })
+                @Html.ValidationMessageFor(model => model.DistributorID, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.DistributorName, htmlAttributes: new { @class = "form-label" })
+                @Html.EditorFor(model => model.DistributorName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Distributor Name" } })
+                @Html.ValidationMessageFor(model => model.DistributorName, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.DistributorEmail, htmlAttributes: new { @class = "form-label" })
+                @Html.EditorFor(model => model.DistributorEmail, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Email" } })
+                @Html.ValidationMessageFor(model => model.DistributorEmail, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "form-label" })
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Password", type = "password" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.DistributorPhone, htmlAttributes: new { @class = "form-label" })
+                @Html.EditorFor(model => model.DistributorPhone, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Phone Number" } })
+                @Html.ValidationMessageFor(model => model.DistributorPhone, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "form-label" })
+                @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Location" } })
+                @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <input type="submit" value="Create Distributor" class="btn btn-success" />
+                @Html.ActionLink("Back to List", "GetDistributors", null, new { @class = "btn btn-outline-secondary" })
+            </div>
+        </div>
+    }
+</div>

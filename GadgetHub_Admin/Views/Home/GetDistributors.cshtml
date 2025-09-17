@@ -1,0 +1,45 @@
+﻿@model IEnumerable<GadgetHub_Server.Models.Distributors>
+
+@{
+    ViewBag.Title = "GetDistributors";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="text-primary mb-4">Distributors</h2>
+
+    <div class="mb-3">
+        @Html.ActionLink("➕ Add New Distributor", "AddDistributor", null, new { @class = "btn btn-success" })
+    </div>
+
+    <table class="table table-bordered table-striped table-hover shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.DistributorID)</th>
+                <th>@Html.DisplayNameFor(model => model.DistributorName)</th>
+                <th>@Html.DisplayNameFor(model => model.DistributorEmail)</th>
+                <th>@Html.DisplayNameFor(model => model.Password)</th>
+                <th>@Html.DisplayNameFor(model => model.DistributorPhone)</th>
+                <th>@Html.DisplayNameFor(model => model.Location)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.DistributorID)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DistributorName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DistributorEmail)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Password)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DistributorPhone)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Location)</td>
+                    <td>
+                        @Html.ActionLink("Update", "UpdateDistributor", new { id = item.DistributorID }, new { @class = "btn btn-sm btn-warning me-1" })
+                        @Html.ActionLink("Delete", "DeleteDistributor", new { id = item.DistributorID }, new { @class = "btn btn-sm btn-danger" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
