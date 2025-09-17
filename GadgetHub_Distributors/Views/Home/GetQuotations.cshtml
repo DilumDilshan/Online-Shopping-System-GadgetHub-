@@ -1,0 +1,66 @@
+﻿@model IEnumerable<GadgetHub_Server.Models.Quotations>
+
+@{
+    ViewBag.Title = "GetQuotations";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}                                                    
+
+<div class="container mt-4">
+    <h2 class="text-center text-primary mb-4"><i class="fas fa-list"></i> Manage Quotation List</h2>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="text-secondary">Quotation Inventory</h5>
+        <a href="@Url.Action("AddQuotation", "Home")" class="btn btn-primary">
+            <i class="fas fa-plus-circle"></i> Create New Quotation
+        </a>
+    </div>
+
+    <div>
+        <table class="table table-striped table-bordered">
+            <thead class="bg-info text-white">
+                <tr>
+                    <th>QuotationId</th>
+                    <th>product Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.QuotationID)</td>   
+                        <td>@Html.DisplayFor(modelItem => item.productName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                        <td class="text-center">
+                            @Html.ActionLink("Update", "UpdateQuotation", new { id = item.QuotationID }, new { @class = "btn btn-sm btn-warning me-1" })
+                            @Html.ActionLink("Delete", "DeleteQuotation", new { id = item.QuotationID }, new { @class = "btn btn-sm btn-danger", onclick = "return confirm('Are you sure you want to delete this Quotation?');" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+        <i class="fas fa-check-circle"></i> @TempData["SuccessMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+        <i class="fas fa-exclamation-circle"></i> @TempData["ErrorMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}

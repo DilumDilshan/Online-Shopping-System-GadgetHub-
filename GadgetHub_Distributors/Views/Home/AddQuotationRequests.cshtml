@@ -1,0 +1,54 @@
+﻿@model GadgetHub_Server.Models.QuotationRequests
+
+@{
+    ViewBag.Title = "AddQuotationRequests";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center text-primary my-4">
+    <i class="fas fa-plus-circle"></i> Add Quotation Request
+</h2>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "needs-validation", novalidate = "novalidate" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container">
+        <div class="row g-3 mb-3">
+            <div class="col-md-6">
+                @Html.LabelFor(model => model.QuotationRequestID, htmlAttributes: new { @class = "form-label fw-bold" })
+                @Html.EditorFor(model => model.QuotationRequestID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.QuotationRequestID, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-6">
+                @Html.LabelFor(model => model.DistributorName, htmlAttributes: new { @class = "form-label fw-bold" })
+                @Html.EditorFor(model => model.DistributorName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DistributorName, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-6">
+                @Html.LabelFor(model => model.QuotationPrice, htmlAttributes: new { @class = "form-label fw-bold" })
+                @Html.EditorFor(model => model.QuotationPrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.QuotationPrice, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-6">
+                @Html.LabelFor(model => model.QuotationDate, htmlAttributes: new { @class = "form-label fw-bold" })
+                @Html.TextBoxFor(model => model.QuotationDate, new { @class = "form-control", type = "date" })
+                @Html.ValidationMessageFor(model => model.QuotationDate, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-6">
+                @Html.LabelFor(model => model.Status, new { @class = "form-label fw-bold" })
+                <input type="text" class="form-control" value="Pending" readonly />
+                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="text-end">
+            <input type="submit" value="Create" class="btn btn-primary" />
+            @Html.ActionLink("Back to List", "GetOrder", null, new { @class = "btn btn-secondary ms-2" })
+        </div>
+    </div>
+}
