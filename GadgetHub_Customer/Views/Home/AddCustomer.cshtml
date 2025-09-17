@@ -1,0 +1,200 @@
+﻿@model GadgetHub_Server.Models.Customers
+
+@{
+    ViewBag.Title = "AddCustomer";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            padding-top: 60px;
+        }
+
+        .card {
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 1rem;
+        }
+
+        .btn-primary, .btn-secondary {
+            border-radius: 5px;
+            font-size: 1rem;
+            padding: 10px 20px;
+            width: 150px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+            .btn-primary:hover {
+                background-color: #0056b3;
+            }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+
+            .btn-secondary:hover {
+                background-color: #5a6268;
+            }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        .alert {
+            margin-top: 20px;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+            .button-container a,
+            .button-container input {
+                margin: 5px;
+            }
+
+        /* Adjustments for small devices */
+        media (max-width: 767px) {
+            .form-container
+
+        {
+            width: 90%;
+            padding: 15px;
+        }
+
+        .card-header {
+            font-size: 1.25rem;
+        }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Success Message -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+            <i class="fas fa-check-circle"></i> @TempData["SuccessMessage"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
+    <!-- Error Message -->
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+            <i class="fas fa-exclamation-circle"></i> @TempData["ErrorMessage"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    <div class="form-container">
+        <div class="card">
+            <div class="card-header">
+                Customer Registration
+            </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="card-body">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.CustomerName, htmlAttributes: new { @class = "col-md-3 col-form-label form-label" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.CustomerEmail, htmlAttributes: new { @class = "col-md-3 col-form-label form-label" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.CustomerEmail, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CustomerEmail, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "col-md-3 col-form-label form-label" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "col-md-3 col-form-label form-label" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.CustomerPhone, htmlAttributes: new { @class = "col-md-3 col-form-label form-label" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.CustomerPhone, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CustomerPhone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <!-- Button Section -->
+                    <div class="button-container">
+                        <input type="submit" value="Create Customer" class="btn btn-primary" />
+                        <a href="@Url.Action("Index", "Home")" class="btn btn-secondary">Back to Login</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jqueryval")
+</body>
+</html>

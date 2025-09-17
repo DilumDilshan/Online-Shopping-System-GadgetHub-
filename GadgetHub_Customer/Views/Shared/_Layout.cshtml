@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Font Awesome (for icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Sticky footer */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(180deg,#eed0d0);
+        }
+
+        .content-wrapper {
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .body-content {
+            flex: 1;
+            padding-bottom: 60px; /* Ensure content doesn't overlap footer */
+        }
+
+        footer {
+            background: linear-gradient(90deg, #e67e22, #f1c40f);
+            color: #ffffff;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+            footer:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 -6px 16px rgba(0, 0, 0, 0.3);
+            }
+
+            footer a {
+                color: #2d3436;
+                text-decoration: none;
+                font-weight: 500;
+                transition: color 0.3s ease;
+            }
+
+                footer a:hover {
+                    color: #ffffff;
+                    text-decoration: underline;
+                }
+    </style>
+</head>
+<body>
+    <div class="content-wrapper">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a href="@Url.Action("Home", "Home")" class="navbar-brand">
+                    <img src="https://gadgethub.com.bd/storage/logo/logo-2022-10-10-6343f2818ad34.png" alt="Logo" class="img-fluid" style="max-width: 150px;"> <!-- Replace with your image path -->
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav" style="margin-top:auto;">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="@Url.Action("Home", "Home")">
+                                <i class="fas fa-home"></i> Home
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="@Url.Action("GetProduct", "Home")">
+                                <i class="fas fa-box"></i> Product
+                            </a>
+                        </li>
+
+                    </ul>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="@Url.Action("GetOrder", "Home")">
+                                <i class="fas fa-clipboard-list"></i> Manage Order
+                            </a>
+                        </li>
+
+                    </ul>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="@Url.Action("GetOrderRequest", "Home")">
+                                <i class="fas fa-sms"></i> Request Order
+                            </a>
+                        </li>
+
+                    </ul>
+                    <div class="d-flex">
+                        <a href="@Url.Action("Index", "Home")" class="btn btn-outline-light">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+        </div>
+
+        <footer>
+            <p>&copy; @DateTime.Now.Year - State GadgetHub | <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a></p>
+        </footer>
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <!-- Add Bootstrap 5 JS for the navbar toggling functionality -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
